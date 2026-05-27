@@ -403,7 +403,7 @@ export default function EarlClydePortfolio() {
                     <div className={`w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center transition-all duration-500 ${activeProject === index ? "bg-black border-black text-white rotate-180" : "group-hover:border-accent group-hover:text-accent"}`}>
                        <span className="text-xl font-light">
                         {activeProject === index ? "−" : "+"}
-                      </span>
+                       </span>
                     </div>
                   </div>
                 </button>
