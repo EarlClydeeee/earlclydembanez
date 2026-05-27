@@ -45,6 +45,13 @@ const tools = [
 
 const experiences = [
   {
+    period: "2026", title: "Cursor Manila Hack Sprint Champion",
+    company: "Drowzi", location: "Manila",
+    description: "Won 1st Place at Cursor Manila Hack Sprint. Developed an ML pipeline for media processing and intelligent content handling under a high-pressure, fast-paced hackathon environment.",
+    tags: ["Python", "Machine Learning", "Vibe-coding", "Rapid Prototyping"],
+    status: "COMPLETED", accentBg: "#E0E0E0", accentBdr: "#404040", nameColor: "#333333",
+  },
+  {
     period: "2023 — Present", title: "Development Team",
     company: "AWS Cloud Club — PUP Manila", location: "PUP Manila",
     description: "Shipped the gamified Skill Builder LMS (deployed across 7 departments), the official AWSCC PUP website, and the TEDxPUP event platform. Led development on multiple simultaneous production deployments.",

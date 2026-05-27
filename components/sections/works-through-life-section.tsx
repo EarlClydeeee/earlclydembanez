@@ -1,79 +1,115 @@
 "use client";
 
+import { useState } from "react";
 import type { PortfolioSectionId } from "@/lib/portfolio-sections";
+import type { Project } from "@/types/project";
 
 type WorksThroughLifeSectionProps = { id: PortfolioSectionId };
 
-const projects = [
+const projects: Project[] = [
   {
-    number: "01", name: "ACCESS Official Website",       year: "2026", status: "ACTIVE",
-    tags: ["Next.js", "Supabase", "PostgreSQL", "RBAC"],
-    description: "Replaced spreadsheet-based org management with a centralized platform — member directory, asset borrowing workflow, and governance tooling for PUP's CpE student body.",
+    number: "01", name: "Drowzi — Hack Sprint Champion", year: "2026", status: "COMPLETED",
+    tags: ["Python", "Machine Learning", "Vibe-coding", "Rapid Prototyping"],
+    description: "Won 1st Place at Cursor Manila Hack Sprint. Developed ML pipeline for media processing and intelligent content handling under high-pressure hackathon environment.",
+    color: "#3D3D3D", nameColor: "#A0A0A0", icon: "🏆",
+    href: null,
+    featured: true,
+  },
+  {
+    number: "02", name: "ACCESS Official Website",       year: "2026", status: "ACTIVE",
+    tags: ["Next.js", "React", "Tailwind CSS", "Supabase", "PostgreSQL"],
+    description: "Led frontend architecture for ACCESS at PUP. Centralized org data, implemented asset management interface and role-based access for students and leadership.",
     color: "#5A8880", nameColor: "#4A9A5A", icon: "🏛",
     href: "https://access-web-tau.vercel.app/",
+    featured: true,
   },
   {
-    number: "02", name: "AWSCCPUP Website & Membership", year: "2026", status: "ACTIVE",
-    tags: ["Astro", "React", "FastAPI", "PostgreSQL"],
-    description: "Full organizational platform for AWS Cloud Club PUP — member portal, searchable directory, and FastAPI REST backend. Replaced manual member tracking with a searchable, filterable system.",
+    number: "03", name: "AWSCCPUP Website & Membership", year: "2026", status: "ACTIVE",
+    tags: ["Astro", "React", "TypeScript", "FastAPI", "PostgreSQL"],
+    description: "Contributed to AWS Cloud Club PUP's official site. Implemented member directory, profile management, and FastAPI REST API with Islands Architecture.",
     color: "#C08A58", nameColor: "#D4A040", icon: "☁",
     href: "https://www.awsccpup.cloud/contributors",
+    featured: true,
   },
   {
-    number: "03", name: "AWS SBD Learning Management System", year: "2025", status: "COMPLETED",
-    tags: ["React", "TypeScript", "Express.js", "Supabase"],
-    description: "Gamified LMS deployed across 7 departments — leaderboard, real-time progress tracking, and department rankings. Turned skill-building into a measurable, competitive experience.",
+    number: "04", name: "AWS SBD Learning Management System", year: "2025", status: "COMPLETED",
+    tags: ["React", "TypeScript", "Express.js", "Supabase", "AWS"],
+    description: "Gamified LMS for AWS Cloud Club PUP. Implemented leaderboard system and key UI components, integrating frontend with Express.js + Supabase for real-time updates.",
     color: "#4A7088", nameColor: "#4A80C0", icon: "📚",
     href: "https://sbd.awsccpup.cloud/contributors",
+    featured: true,
   },
   {
-    number: "04", name: "SOMS — Output Monitoring System", year: "2025", status: "COMPLETED",
-    tags: ["HTML", "Tailwind", "JavaScript", "PHP", "MySQL"],
-    description: "Industrial dashboard tracking 2M+ factory production cycles at Hayakawa Electronics. ETL pipeline replaced manual paper logs — achieving 45% improvement in reporting efficiency.",
+    number: "05", name: "OMS – Output Monitoring System", year: "2025", status: "COMPLETED",
+    tags: ["HTML", "Tailwind CSS", "JavaScript", "PHP", "MySQL"],
+    description: "Real-time production monitoring tracking 2M+ outputs. Built responsive frontend and PHP/MySQL backend for predictive maintenance and lifespan tracking.",
     color: "#7A6A55", nameColor: "#C0704A", icon: "🏭",
     href: null,
+    featured: true,
   },
   {
-    number: "05", name: "ActiveCAMPUS GO",               year: "2025", status: "COMPLETED",
+    number: "06", name: "ActiveCAMPUS GO",               year: "2025", status: "COMPLETED",
     tags: ["Next.js", "Express", "Firebase", "Google Maps"],
-    description: "Location-aware gamified fitness PWA for student wellness — campus challenges, step tracking, and leaderboards. Deployed campus-wide and ranked Top 8 PUP-wide.",
+    description: "Gamified fitness platform for student wellness. Architected PWA using Next.js and Firebase, integrating Google Maps for real-time zone interactions. Ranked Top 8 PUP-wide.",
     color: "#6AAA6A", nameColor: "#4AA870", icon: "🏃",
     href: null,
+    featured: true,
   },
   {
-    number: "06", name: "CPE Fair Tournament System",    year: "2025", status: "COMPLETED",
-    tags: ["Next.js", "Express.js", "Supabase", "Vercel"],
-    description: "Eliminated manual bracket management for CPE Fair — real-time tournament platform with live leaderboard, bracket visualization, role-based staff access, and Excel export.",
+    number: "07", name: "CPE Fair Tournament System",    year: "2025", status: "COMPLETED",
+    tags: ["Next.js", "Express.js", "TypeScript", "Supabase", "Vercel"],
+    description: "Full-stack platform with real-time leaderboard, bracket visualization, and admin dashboard. Implemented RBAC, score aggregation, and Excel export.",
     color: "#8B6A9A", nameColor: "#9A5AC0", icon: "🏆",
     href: "https://cpefair2025.vercel.app/contributors",
+    featured: true,
   },
   {
-    number: "07", name: "TEDxPUP Official Website",      year: "2025", status: "COMPLETED",
+    number: "08", name: "Evidentia — AI Civic Platform", year: "2025", status: "COMPLETED",
+    tags: ["HTML", "CSS", "Python", "Gemini AI", "GPT API"],
+    description: "AI-powered civic incident platform featuring prioritized reporting and heatmap dashboards. Integrated Gemini AI for urgency filtering and a GPT-wrapped chatbot.",
+    color: "#5A5888", nameColor: "#6A5A90", icon: "⚖",
+    href: null,
+    featured: true,
+  },
+  {
+    number: "09", name: "TEDxPUP Official Website",      year: "2025", status: "COMPLETED",
     tags: ["React", "Typeform"],
-    description: "Official event platform for TEDxPUP — Typeform ticketing integration, contributor showcase, FAQ system, and tablet-optimized view for on-site event staff.",
+    description: "Developed official TEDxPUP platform. Implemented FAQs, contributors page, and tablet views. Integrated Typeform for ticketing and registration.",
     color: "#C04040", nameColor: "#C04A4A", icon: "🎤",
     href: "https://www.tedxpup.org/contributors",
+    featured: false,
   },
   {
-    number: "08", name: "AWSCC ID Finder System",        year: "2025", status: "COMPLETED",
+    number: "10", name: "AWSCC ID Finder Upgrade",        year: "2025", status: "COMPLETED",
     tags: ["React", "TypeScript"],
-    description: "Complete frontend overhaul of the AWS Cloud Club PUP ID Finder — migrated from legacy RetroUI to modern SBD design system with improved usability and performance.",
+    description: "Led complete frontend redesign, migrating from legacy RetroUI to a modern, production-grade design aligned with the SBD LMS visual system.",
     color: "#4A6A9A", nameColor: "#5A70A8", icon: "🪪",
     href: "https://www.awsccpup.cloud/id-finder",
+    featured: false,
   },
   {
-    number: "09", name: "ICpEP Certificate Generator",  year: "2025", status: "COMPLETED",
+    number: "11", name: "ICpEP Certificate Generator",  year: "2025", status: "COMPLETED",
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "Figma"],
     description: "Automated bulk certificate creation for large-scale events — CSV input, live template preview, and one-click batch PDF/PNG export. Reduced days of manual work to minutes.",
     color: "#D4785A", nameColor: "#C89A40", icon: "📜",
     href: null,
+    featured: false,
   },
   {
-    number: "10", name: "Evidentia — AI Civic Platform", year: "2025", status: "COMPLETED",
-    tags: ["Flask", "Gemini AI", "GPT API"],
-    description: "AI-powered civic incident platform — GPT-prioritized reporting, geographic heatmap dashboards, and citizen query chatbot. Tested with 100+ users at Sparkfest hackathon.",
-    color: "#5A5888", nameColor: "#6A5A90", icon: "⚖",
+    number: "12", name: "Sorting Algorithm Visualizer",   year: "2024–2025", status: "COMPLETED",
+    tags: ["Figma", "Python", "Glassmorphism"],
+    description: "Designed and implemented animated visual workflows for core sorting algorithms. Features a modern Glassmorphism UI and custom-built animations.",
+    color: "#8B8B6A", nameColor: "#A8A85A", icon: "📊",
     href: null,
+    featured: false,
+  },
+  {
+    number: "13", name: "Pythonic Symphony",             year: "2023–2024", status: "COMPLETED",
+    tags: ["Python"],
+    description: "Contact management system with CRUD features and optimized dictionary storage. Improved retrieval efficiency by 40% for 25+ test users.",
+    color: "#6A7A88", nameColor: "#5A70A8", icon: "📔",
+    href: null,
+    featured: false,
   },
 ];
 
@@ -271,6 +307,12 @@ function ProjectRow({ project, i }: { project: typeof projects[0]; i: number }) 
 
 // ─── Main section ────────────────────────────────────────────────
 export function WorksThroughLifeSection({ id }: WorksThroughLifeSectionProps) {
+  const [showAll, setShowAll] = useState(false);
+
+  const featuredProjects = projects.filter(p => p.featured);
+  const secondaryProjects = projects.filter(p => !p.featured);
+  const displayedProjects = showAll ? projects : featuredProjects;
+
   return (
     <section
       id={id}
@@ -378,7 +420,7 @@ export function WorksThroughLifeSection({ id }: WorksThroughLifeSectionProps) {
                   color: "#3D3025",
                   letterSpacing: "0.06em",
                 }}>
-                  RECENT BUILDS
+                  MAJOR BUILDS
                 </span>
               </div>
             </div>
@@ -390,12 +432,42 @@ export function WorksThroughLifeSection({ id }: WorksThroughLifeSectionProps) {
               boxShadow: "4px 4px 0 rgba(0,0,0,0.2)",
               padding: "16px 18px",
             }}>
-              {projects.map((p, i) => (
-                <ProjectRow key={p.number} project={p} i={i} />
-              ))}
+              <div className="flex flex-col">
+                {displayedProjects.map((p, i) => (
+                  <ProjectRow key={p.number} project={p} i={i} />
+                ))}
+              </div>
+
+              {/* View More Button */}
+              <button
+                onClick={() => setShowAll(!showAll)}
+                style={{
+                  width: "100%",
+                  padding: "12px",
+                  marginTop: "8px",
+                  background: "rgba(61,48,37,0.05)",
+                  border: "2px dashed rgba(61,48,37,0.2)",
+                  fontFamily: "var(--font-pixel), monospace",
+                  fontSize: "8px",
+                  color: "#5A3A1A",
+                  cursor: "pointer",
+                  transition: "all 0.2s",
+                  letterSpacing: "0.1em",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(61,48,37,0.1)";
+                  e.currentTarget.style.borderStyle = "solid";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(61,48,37,0.05)";
+                  e.currentTarget.style.borderStyle = "dashed";
+                }}
+              >
+                {showAll ? "▲ SHOW LESS" : `▼ VIEW ARCHIVE (${secondaryProjects.length} OTHER PROJECTS)`}
+              </button>
 
               {/* Tech stack badges */}
-              <div style={{ paddingTop: "14px", marginTop: "4px", borderTop: "2px dashed rgba(61,48,37,0.25)" }}>
+              <div style={{ paddingTop: "14px", marginTop: "14px", borderTop: "2px dashed rgba(61,48,37,0.25)" }}>
                 <div style={{
                   fontFamily: "var(--font-pixel), monospace",
                   fontSize: "7px",

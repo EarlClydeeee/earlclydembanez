@@ -330,13 +330,11 @@ export function IntroSection({ id }: Props) {
                 lineHeight: 1.65,
                 marginBottom: "10px",
               }}>
-                At{" "}
+                I recently won <span style={{ color: "#C05090", fontWeight: "bold" }}>1st Place at the Cursor Manila Hack Sprint</span>, developing an ML pipeline for intelligent media processing. At{" "}
                 <span style={{ color: "#D4785A", fontStyle: "italic" }}>Hayakawa Electronics</span>
                 , I led the frontend of a factory output monitoring system tracking{" "}
                 <span style={{ color: "#D4785A", fontStyle: "italic" }}>2M+ production cycles</span>{" "}
-                — cutting reporting time by 45%. Across student organizations, I&apos;ve built
-                membership platforms, gamified learning systems, event infrastructure, certificate
-                automation, and real-time tournament tools. Each one solving a specific operational problem.
+                — cutting reporting time by 45%.
               </p>
               <p style={{
                 fontFamily: "var(--font-vt323), monospace",
@@ -345,6 +343,8 @@ export function IntroSection({ id }: Props) {
                 lineHeight: 1.65,
                 marginBottom: "20px",
               }}>
+                Across student organizations like <span style={{ color: "#2A68C0" }}>AWS Cloud Club</span> and <span style={{ color: "#5A8880" }}>ACCESS</span>, I&apos;ve built
+                membership platforms, gamified learning systems, and real-time tournament tools.
                 I work across the full stack —{" "}
                 <span style={{ color: "#5A8880" }}>React</span>,{" "}
                 <span style={{ color: "#5A8880" }}>Next.js</span>,{" "}

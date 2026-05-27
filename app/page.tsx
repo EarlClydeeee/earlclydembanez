@@ -16,102 +16,190 @@ import {
   UserRound
 } from "lucide-react";
 
-const projects = [
+type DeployedProject = {
+  id: string;
+  name: string;
+  year: string;
+  intensity: "High" | "Medium" | "Core";
+  category: string;
+  role: string;
+  tools: string[];
+  impact: string;
+  summary: string;
+  highlights: string[];
+};
+
+const projects: DeployedProject[] = [
   {
     id: "01",
-    name: "ACCESS Web Portal",
-    subtitle: "",
+    name: "ACCESS Official Website: Directory & Asset Management",
+    year: "2026",
+    intensity: "Core",
     category: "Organizational Systems",
-    problem:
-      "Organizations managing members, assets, and governance across disconnected spreadsheets lose hours every week and institutional knowledge every semester turnover.",
-    solution:
-      "A centralized web platform unifying directory management, asset tracking, and governance workflows under one authenticated, role-based system — built for real organizational operations.",
-    role: "Lead Developer — system architecture, database design, authentication layer, and full-stack implementation.",
-    tools: ["PHP", "JavaScript", "HTML/CSS", "MySQL"],
-    impact:
-      "Eliminated manual coordination overhead for organizational officers. Member record access reduced from minutes to seconds. Zero duplication across governance workflows.",
-    whyItMatters:
-      "The same problem that drives enterprise adoption of tools like Notion, Monday.com, and Confluence — solved at the organizational level. Demonstrates the ability to turn operational friction into scalable software.",
+    role: "Led frontend architecture and key system workflows.",
+    tools: ["Next.js", "React", "Tailwind CSS", "Supabase", "PostgreSQL"],
+    impact: "Centralized governance directory and asset lifecycle workflows in one auditable platform.",
+    summary: "Unified representative directory, dashboards, and RBAC-powered asset borrowing/returns for ACCESS-PUP.",
+    highlights: [
+      "Built dynamic org directory and responsive dashboards for student leadership visibility.",
+      "Implemented role-based UI and borrowing workflow with approval/return status tracking.",
+      "Integrated Supabase + PostgreSQL for auditable operations and centralized records.",
+    ],
   },
   {
     id: "02",
-    name: "SOMS",
-    subtitle: "Storage & Output Monitoring System",
+    name: "OMS — Output Monitoring System",
+    year: "2025",
+    intensity: "Core",
     category: "Industrial / IoT",
-    problem:
-      "Industrial teams without real-time visibility into component health, output levels, and maintenance windows face unplanned downtime — a costly, preventable failure mode.",
-    solution:
-      "A real-time monitoring dashboard tracking applicator locations, component lifespans, output metrics, and threshold-based maintenance alerts — proactive visibility before failures occur.",
-    role: "Full-stack developer and systems architect — sensor integration, dashboard design, alert logic, and database schema.",
-    tools: ["PHP", "JavaScript", "MySQL", "Sensor Integration"],
-    impact:
-      "Proactive maintenance scheduling capability introduced where none existed. Measurable reduction in unplanned downtime risk through automated threshold alerting.",
-    whyItMatters:
-      "Industrial monitoring software is a multi-billion dollar sector. Building production-grade monitoring logic at the student level demonstrates real-world engineering maturity.",
+    role: "Software Engineering Front-End Lead with backend contributions.",
+    tools: ["HTML", "Tailwind CSS", "JavaScript", "PHP", "MySQL"],
+    impact: "Tracked 2M+ machine/applicator outputs and improved reporting efficiency by ~45%.",
+    summary: "Real-time production monitoring for machine output, component lifespan, and predictive maintenance.",
+    highlights: [
+      "Built modular front-end dashboards for traceability across production lines.",
+      "Contributed to predictive maintenance logic and lifespan monitoring workflows.",
+      "Implemented hybrid relational + JSON schema for high-volume industrial reporting.",
+    ],
   },
   {
     id: "03",
-    name: "NFC Attendance Verification System",
-    subtitle: "",
-    category: "Event Technology",
-    problem:
-      "Manual event sign-in creates entry bottlenecks, inaccurate attendance records, and post-event data gaps that organizers spend days reconciling manually.",
-    solution:
-      "An NFC-based real-time attendance verification system with live analytics dashboards — hardware-to-web integration built for event scale.",
-    role: "Full-stack developer and hardware integration lead — NFC reader integration, real-time data pipeline, admin dashboard.",
-    tools: ["JavaScript", "NFC Hardware", "PHP", "MySQL"],
-    impact:
-      "Zero manual reconciliation. Real-time attendance data for administrators. Scales to any NFC-equipped venue without additional development overhead.",
-    whyItMatters:
-      "Bridging physical hardware and web software is a rare engineering combination. Engineers who operate across both layers are significantly more valuable to product teams.",
+    name: "AWSCCPUP Website & Membership Management System",
+    year: "2026",
+    intensity: "High",
+    category: "Platform Engineering",
+    role: "Full-stack contributor across frontend and API-integrated user flows.",
+    tools: ["Astro", "React", "TypeScript", "FastAPI", "Python", "PostgreSQL"],
+    impact: "Enabled centralized member management and discoverability for AWS Cloud Club PUP.",
+    summary: "Production-ready membership platform with profile management, filtering, and backend reliability.",
+    highlights: [
+      "Implemented member directory, profile updates, and search/filter experiences.",
+      "Integrated FastAPI REST endpoints with PostgreSQL-backed data operations.",
+      "Delivered in an Astro Islands + React architecture with tested backend workflows.",
+    ],
   },
   {
     id: "04",
-    name: "Automated Certificate Generator",
-    subtitle: "",
-    category: "Automation",
-    problem:
-      "Manually designing, personalizing, and distributing certificates for events wastes hours of administrative time and produces inconsistent results at any meaningful scale.",
-    solution:
-      "An automated certificate generation pipeline that renders, personalizes, and exports certificates from participant data — no manual design work required per recipient.",
-    role: "Developer and automation architect — template engine, data pipeline, and export logic.",
-    tools: ["JavaScript", "HTML/CSS", "PDF Generation"],
-    impact:
-      "Certificate production time reduced from hours to minutes. Consistent, professional output at any scale. Administrative overhead eliminated entirely.",
-    whyItMatters:
-      "Automation thinking — identifying repetitive processes and engineering them away — is exactly what high-output engineering teams value. This is pattern recognition applied to real work.",
+    name: "AWS Skill Builder LMS",
+    year: "2025",
+    intensity: "High",
+    category: "Learning Systems",
+    role: "Contributed leaderboard and engagement-critical user interfaces.",
+    tools: ["React", "TypeScript", "Express.js", "Supabase", "AWS"],
+    impact: "Supported gamified learning workflows across 7 technical departments.",
+    summary: "Centralized LMS with ranking mechanics, assignment visibility, and engagement loops.",
+    highlights: [
+      "Built landing and in-platform leaderboard features with dynamic ordering.",
+      "Shipped supporting interfaces, including custom 404 and reusable UI components.",
+      "Connected frontend modules to Express + Supabase data pipelines.",
+    ],
   },
   {
     id: "05",
-    name: "TEDxPUP Website",
-    subtitle: "",
-    category: "Web / Frontend",
-    problem:
-      "A licensed TED event needed a branded, informative digital platform that met global TED standards while serving hundreds of local attendees and speakers.",
-    solution:
-      "The official TEDxPUP event platform — speaker profiles, schedules, event logistics, and attendee-facing content built to TED brand requirements.",
-    role: "Frontend developer and content architect — information architecture, UI design, and production deployment.",
-    tools: ["HTML", "CSS", "JavaScript"],
-    impact:
-      "Primary digital presence for a licensed TED event. Hundreds of attendees served. Delivered on deadline, on brand, and under real public scrutiny.",
-    whyItMatters:
-      "Delivering production-grade work for a real public audience — under the standards of a globally recognized brand — is what separates builders from students.",
+    name: "CPE Fair Tournament Management System",
+    year: "2025",
+    intensity: "High",
+    category: "Operations Platform",
+    role: "Full-stack developer for scoring, dashboard, and export workflows.",
+    tools: ["Next.js", "Express.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
+    impact: "Automated tournament management with live visibility and admin control surfaces.",
+    summary: "Competition platform with real-time leaderboard, bracket visualization, and authenticated admin tooling.",
+    highlights: [
+      "Built role-based scoring APIs with aggregation and Excel export.",
+      "Shipped responsive bracket and leaderboard views with category filtering.",
+      "Deployed as serverless stack for event-ready scale and reliability.",
+    ],
   },
   {
     id: "06",
-    name: "Gamified Fitness Platform",
-    subtitle: "",
-    category: "Product / Mobile Web",
-    problem:
-      "Student wellness programs fail at engagement because generic fitness apps have no campus context, no community accountability, and no compelling feedback loops for their actual users.",
-    solution:
-      "A location-aware step challenge platform with gamification mechanics, leaderboards, and milestone tracking built specifically for student community dynamics.",
-    role: "Full-stack developer — location API integration, gamification logic, leaderboard system, and user flows.",
-    tools: ["JavaScript", "Geolocation APIs", "HTML/CSS"],
-    impact:
-      "Addresses the measurable engagement gap in institutional wellness programs. Community accountability mechanics built in from the architecture level.",
-    whyItMatters:
-      "Product intuition — understanding why users disengage and engineering around it — is a skill most engineers never develop. This project demonstrates it explicitly.",
+    name: "Drowzi — Cursor Manila Hack Sprint Champion",
+    year: "2026",
+    intensity: "High",
+    category: "AI / Machine Learning",
+    role: "Built the ML pipeline under hackathon constraints.",
+    tools: ["Python", "Machine Learning", "Rapid Prototyping"],
+    impact: "Won 1st Place; proved high-speed technical execution with AI pipeline ownership.",
+    summary: "Competition-winning prototype focused on media processing and intelligent content handling.",
+    highlights: [
+      "Implemented ML workflow for media processing and inference-ready handling.",
+      "Delivered end-to-end in a fast-paced hackathon environment.",
+      "Validated execution quality through 1st place finish.",
+    ],
+  },
+];
+
+const supportingProjects: DeployedProject[] = [
+  {
+    id: "07",
+    name: "TEDxPUP Official Website",
+    year: "2025",
+    intensity: "Medium",
+    category: "Frontend Delivery",
+    role: "Frontend contributor for key user-facing sections.",
+    tools: ["React", "Typeform Integration"],
+    impact: "Improved event discoverability and streamlined registration flow.",
+    summary: "Official event site with structured content and ticketing integration.",
+    highlights: ["Built tablet view, FAQ, and contributors sections.", "Integrated Typeform for registration and engagement.", "Maintained compliance with TEDx branding and licensing."],
+  },
+  {
+    id: "08",
+    name: "ActiveCAMPUS GO",
+    year: "2025",
+    intensity: "Medium",
+    category: "Wellness Product",
+    role: "Co-developed platform architecture and real-time interactions.",
+    tools: ["Next.js", "Express", "Firebase", "Google Maps API"],
+    impact: "Ranked 8 across all-PUP; proved gamified engagement model for student wellness.",
+    summary: "Location-aware gamified fitness web app with campus challenge mechanics.",
+    highlights: ["Built PWA architecture and location interaction loops.", "Integrated step-based engagement logic with map zones.", "Delivered multi-user wellness challenge workflows."],
+  },
+  {
+    id: "09",
+    name: "AWS Cloud Club ID Finder System Upgrade",
+    year: "2025",
+    intensity: "Medium",
+    category: "UI Modernization",
+    role: "Led frontend redesign and responsive implementation.",
+    tools: ["React", "TypeScript"],
+    impact: "Raised usability, visual consistency, and mobile accessibility.",
+    summary: "Modernized legacy ID Finder experience to production-grade interface standards.",
+    highlights: ["Rebuilt UI from RetroUI style to modern SBD-aligned system.", "Delivered responsive layout behavior across screen sizes.", "Improved interaction clarity and consistency."],
+  },
+  {
+    id: "10",
+    name: "Sparkfest Project: Evidentia",
+    year: "2025",
+    intensity: "Medium",
+    category: "Civic Tech + AI",
+    role: "Originated and led concept + implementation direction.",
+    tools: ["HTML", "CSS", "Python", "Gemini AI"],
+    impact: "Tested by 100+ users; demonstrated incident triage and civic analytics utility.",
+    summary: "Civic reporting system with AI-prioritized incident routing and heatmap analytics.",
+    highlights: ["Built urgency filtering pipeline with Gemini AI.", "Integrated GPT-wrapped assistant for barangay Q&A.", "Shipped live analytics and heatmap visualization."],
+  },
+  {
+    id: "11",
+    name: "Sorting Algorithm Visualizer Plan",
+    year: "2024-2025",
+    intensity: "Medium",
+    category: "Academic Product Design",
+    role: "Led UX direction and animated flow design.",
+    tools: ["Figma", "Python"],
+    impact: "Improved algorithm comprehension through visual-first workflow design.",
+    summary: "Designed animated learning flows for five core sorting algorithms.",
+    highlights: ["Led visualization strategy for algorithm states.", "Applied glassmorphism visual system.", "Translated algorithm concepts into learner-friendly interactions."],
+  },
+  {
+    id: "12",
+    name: "Pythonic Symphony — Address Book System",
+    year: "2023-2024",
+    intensity: "Medium",
+    category: "Foundational Engineering",
+    role: "Sole developer for core CRUD and data handling.",
+    tools: ["Python"],
+    impact: "Served 25+ testers and improved retrieval efficiency by 40%.",
+    summary: "Python contact management system with optimized dictionary-based data retrieval.",
+    highlights: ["Built full CRUD workflow.", "Optimized data lookup through dictionary structures.", "Validated performance with test users."],
   },
 ];
 
@@ -170,7 +258,8 @@ const navSections = ["Hero", "About", "Stack", "Work", "Why Me", "Contact"];
 
 export default function EarlClydePortfolio() {
   const [activeSection, setActiveSection] = useState(0);
-  const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [activeProject, setActiveProject] = useState<string | null>(null);
+  const [showSupportingProjects, setShowSupportingProjects] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -376,78 +465,144 @@ export default function EarlClydePortfolio() {
           </h2>
 
           <div className="flex flex-col border-t border-gray-100">
-            {projects.map((project, index) => (
-              <div key={project.id} className="border-b border-gray-100">
-                <button
-                  className="group w-full text-left py-12 flex items-center justify-between gap-8 transition-all duration-500"
-                  onClick={() => setActiveProject(activeProject === index ? null : index)}
-                  aria-expanded={activeProject === index}
-                >
-                  <div className="flex items-center gap-8 md:gap-14 flex-1 min-w-0">
-                    <span className="text-gray-300 text-xs font-bold font-archivo flex-shrink-0 tabular-nums group-hover:text-accent transition-colors">
-                      {project.id}
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="text-2xl md:text-4xl font-black text-black tracking-tight font-archivo group-hover:translate-x-2 transition-transform duration-500">
-                        {project.name}
-                      </h3>
-                      {project.subtitle && (
-                        <p className="text-gray-400 text-sm mt-2 font-medium">{project.subtitle}</p>
-                      )}
+            {projects.map((project) => {
+              const projectKey = `core-${project.id}`;
+              return (
+                <div key={projectKey} className="border-b border-gray-100">
+                  <button
+                    className="group w-full text-left py-12 flex items-center justify-between gap-8 transition-all duration-500"
+                    onClick={() => setActiveProject(activeProject === projectKey ? null : projectKey)}
+                    aria-expanded={activeProject === projectKey}
+                  >
+                    <div className="flex items-center gap-8 md:gap-14 flex-1 min-w-0">
+                      <span className="text-gray-300 text-xs font-bold font-archivo flex-shrink-0 tabular-nums group-hover:text-accent transition-colors">
+                        {project.id}
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="text-2xl md:text-4xl font-black text-black tracking-tight font-archivo group-hover:translate-x-2 transition-transform duration-500">
+                          {project.name}
+                        </h3>
+                        <p className="text-gray-400 text-sm mt-2 font-medium">{project.summary}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-10 flex-shrink-0">
-                    <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden md:block font-bold">
-                      {project.category}
-                    </span>
-                    <div className={`w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center transition-all duration-500 ${activeProject === index ? "bg-black border-black text-white rotate-180" : "group-hover:border-accent group-hover:text-accent"}`}>
-                       <span className="text-xl font-light">
-                        {activeProject === index ? "−" : "+"}
-                       </span>
+                    <div className="flex items-center gap-4 md:gap-8 flex-shrink-0">
+                      <span className="text-[10px] tracking-[0.2em] uppercase text-gray-400 hidden md:block font-bold">
+                        {project.category}
+                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.2em] font-bold border border-gray-300 px-2 py-1">
+                        {project.intensity}
+                      </span>
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">{project.year}</span>
+                      <div className={`w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center transition-all duration-500 ${activeProject === projectKey ? "bg-black border-black text-white rotate-180" : "group-hover:border-accent group-hover:text-accent"}`}>
+                        <span className="text-xl font-light">{activeProject === projectKey ? "−" : "+"}</span>
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
 
-                {activeProject === index && (
-                  <div className="pb-16 grid grid-cols-1 lg:grid-cols-3 gap-16 animate-in fade-in slide-in-from-top-4 duration-500">
-                    <div className="lg:col-span-2 flex flex-col gap-10">
-                      <div>
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Problem</p>
-                        <p className="text-gray-600 text-lg leading-relaxed font-light">{project.problem}</p>
+                  {activeProject === projectKey && (
+                    <div className="pb-16 grid grid-cols-1 lg:grid-cols-3 gap-16 animate-in fade-in slide-in-from-top-4 duration-500">
+                      <div className="lg:col-span-2 flex flex-col gap-8">
+                        <div>
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Scope</p>
+                          <p className="text-gray-600 text-lg leading-relaxed font-light">{project.summary}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Execution Highlights</p>
+                          <ul className="space-y-2">
+                            {project.highlights.map((item) => (
+                              <li key={item} className="text-gray-600 text-base leading-relaxed font-light">
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Solution</p>
-                        <p className="text-gray-600 text-lg leading-relaxed font-light">{project.solution}</p>
-                      </div>
-                      <div className="bg-accent/5 p-8 border-l-4 border-accent">
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-accent mb-4 font-bold">Why It Matters</p>
-                        <p className="text-black font-bold text-lg leading-relaxed font-archivo">{project.whyItMatters}</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-10">
-                      <div>
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">My Role</p>
-                        <p className="text-gray-600 leading-relaxed text-sm font-medium">{project.role}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Impact</p>
-                        <p className="text-black font-bold text-sm leading-relaxed font-archivo">{project.impact}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Stack</p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tools.map((tool) => (
-                            <span key={tool} className="text-[10px] bg-black text-white px-3 py-1.5 font-bold uppercase tracking-wider">
-                              {tool}
-                            </span>
-                          ))}
+                      <div className="flex flex-col gap-10">
+                        <div>
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">My Role</p>
+                          <p className="text-gray-600 leading-relaxed text-sm font-medium">{project.role}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Impact</p>
+                          <p className="text-black font-bold text-sm leading-relaxed font-archivo">{project.impact}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-4 font-bold">Stack</p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.tools.map((tool) => (
+                              <span key={tool} className="text-[10px] bg-black text-white px-3 py-1.5 font-bold uppercase tracking-wider">
+                                {tool}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-8 border border-gray-200">
+            <button
+              className="w-full text-left px-6 md:px-8 py-5 flex items-center justify-between hover:bg-gray-50 transition-colors"
+              onClick={() => setShowSupportingProjects((prev) => !prev)}
+            >
+              <span className="text-sm md:text-base font-bold text-black tracking-tight">
+                Supporting Projects (Medium Intensity)
+              </span>
+              <span className="text-xl text-gray-500">{showSupportingProjects ? "−" : "+"}</span>
+            </button>
+
+            {showSupportingProjects && (
+              <div className="border-t border-gray-200">
+                {supportingProjects.map((project) => {
+                  const projectKey = `support-${project.id}`;
+                  return (
+                    <div key={projectKey} className="border-b border-gray-100 last:border-b-0 px-6 md:px-8">
+                      <button
+                        className="group w-full text-left py-8 flex items-center justify-between gap-6"
+                        onClick={() => setActiveProject(activeProject === projectKey ? null : projectKey)}
+                        aria-expanded={activeProject === projectKey}
+                      >
+                        <div className="min-w-0">
+                          <p className="text-lg md:text-xl font-black text-black tracking-tight">{project.name}</p>
+                          <p className="text-sm text-gray-500 mt-1">{project.summary}</p>
+                        </div>
+                        <div className="flex items-center gap-4 flex-shrink-0">
+                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold border border-gray-300 px-2 py-1">
+                            {project.intensity}
+                          </span>
+                          <span className="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-bold">{project.year}</span>
+                          <span className="text-lg text-gray-400">{activeProject === projectKey ? "−" : "+"}</span>
+                        </div>
+                      </button>
+
+                      {activeProject === projectKey && (
+                        <div className="pb-8">
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-3 font-bold">Impact</p>
+                          <p className="text-sm text-black font-semibold mb-5">{project.impact}</p>
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-gray-400 mb-3 font-bold">Stack</p>
+                          <div className="flex flex-wrap gap-2 mb-5">
+                            {project.tools.map((tool) => (
+                              <span key={tool} className="text-[10px] bg-black text-white px-3 py-1.5 font-bold uppercase tracking-wider">
+                                {tool}
+                              </span>
+                            ))}
+                          </div>
+                          <ul className="space-y-2">
+                            {project.highlights.map((item) => (
+                              <li key={item} className="text-sm text-gray-600 leading-relaxed">{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-            ))}
+            )}
           </div>
         </div>
       </section>
