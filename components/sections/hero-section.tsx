@@ -1075,9 +1075,10 @@ export function HeroSection({ id }: HeroSectionProps) {
                 }}>
                   {coinInserted ? "LOADING..." : "INSERT COIN"}
                 </span>
-              </div>
-            </div>
-          </div>
+                </div>
+                </div>
+                </div>
+
         </div>
       )}
     </section>
