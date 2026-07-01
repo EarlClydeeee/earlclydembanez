@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { LucideIcon } from 'lucide-react'
-import { BrainCircuit, BriefcaseBusiness, Cloud, Database, GraduationCap, Server } from 'lucide-react'
+import { BrainCircuit, BriefcaseBusiness, Cloud, Database, Server } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Certifications — Earl Clyde Micolob Bañez',

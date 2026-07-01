@@ -58,7 +58,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${bricolage.variable} ${geist.variable} ${jetbrainsMono.variable}`}
     >
-      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

@@ -95,9 +95,9 @@ export default function Sidebar({ onOpenPalette }: SidebarProps) {
             {/* Portfolio sections */}
             <ul className="sidebar__group">
               <li>
-                <a href="/#education" className="sidebar__link">
+                <Link href="/#education" className="sidebar__link">
                   Education
-                </a>
+                </Link>
               </li>
               {navLink('/projects',        'Projects')}
               {navLink('/experience',      'Experience')}

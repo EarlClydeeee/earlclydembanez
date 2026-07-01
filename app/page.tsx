@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { LucideIcon } from 'lucide-react'
-import { BrainCircuit, Building2, Cloud, Code2, Database, GraduationCap, Trophy } from 'lucide-react'
+import { BrainCircuit, Building2, Cloud, Database, GraduationCap, Trophy } from 'lucide-react'
 import DitheredPhoto from './components/DitheredPhoto'
 
 /* ── Data ────────────────────────────────────────────────────────── */
