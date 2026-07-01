@@ -51,9 +51,9 @@
 }
 
 /* ── Font families (injected by next/font via layout className) ─── */
-/* --font-display  → Space Grotesk  */
-/* --font-body     → Geist           */
-/* --font-mono     → JetBrains Mono  */
+/* --font-display  → Bricolage Grotesque */
+/* --font-body     → Geist               */
+/* --font-mono     → JetBrains Mono      */
 
 /* ── Type scale (1.25 major-third) ─────────────────────────────── */
 :root {
@@ -86,7 +86,7 @@
   --radius-pill: 9999px;
 
   /* ── Motion ───────────────────────────────────────────────────── */
-  --dur-short:    100ms;
+  --dur-short:    150ms;
   --dur-mid:      220ms;
   --dur-long:     380ms;
   --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);

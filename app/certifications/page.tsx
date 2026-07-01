@@ -1,32 +1,34 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import type { LucideIcon } from 'lucide-react'
+import { Cloud, Code2, Layers, Server, Cpu, Terminal } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Certifications — Earl Clyde Mbanez',
   description: 'Credentials and certifications, each verifiable at its source.',
 }
 
-const CERT_GROUPS = [
+const CERT_GROUPS: { heading: string; certs: { Icon: LucideIcon; name: string; issuer: string; verify: string }[] }[] = [
   {
     heading: 'Cloud & Infrastructure',
     certs: [
-      { icon: '☁️', name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', verify: '#' },
-      { icon: '🔵', name: 'Azure Fundamentals (AZ-900)', issuer: 'Microsoft', verify: '#' },
+      { Icon: Cloud,    name: 'AWS Certified Cloud Practitioner',       issuer: 'Amazon Web Services',              verify: '#' },
+      { Icon: Server,   name: 'Azure Fundamentals (AZ-900)',             issuer: 'Microsoft',                        verify: '#' },
     ],
   },
   {
     heading: 'Web Development',
     certs: [
-      { icon: '🟨', name: 'JavaScript Algorithms & Data Structures', issuer: 'freeCodeCamp', verify: '#' },
-      { icon: '⚛️', name: 'React Developer Certification', issuer: 'Meta / Coursera', verify: '#' },
-      { icon: '🐘', name: 'PHP & Laravel Developer', issuer: 'Udemy', verify: '#' },
+      { Icon: Code2,    name: 'JavaScript Algorithms & Data Structures', issuer: 'freeCodeCamp',                     verify: '#' },
+      { Icon: Layers,   name: 'React Developer Certification',           issuer: 'Meta / Coursera',                  verify: '#' },
+      { Icon: Terminal, name: 'PHP & Laravel Developer',                 issuer: 'Udemy',                            verify: '#' },
     ],
   },
   {
     heading: 'Engineering',
     certs: [
-      { icon: '🤖', name: 'Introduction to Embedded Systems', issuer: 'Coursera / University of Colorado', verify: '#' },
-      { icon: '🐍', name: 'Python for Everybody', issuer: 'University of Michigan / Coursera', verify: '#' },
+      { Icon: Cpu,      name: 'Introduction to Embedded Systems',        issuer: 'Coursera / University of Colorado', verify: '#' },
+      { Icon: Code2,    name: 'Python for Everybody',                    issuer: 'University of Michigan / Coursera', verify: '#' },
     ],
   },
 ]
@@ -50,7 +52,7 @@ export default function CertificationsPage() {
               {group.certs.map((cert, i) => (
                 <li key={i}>
                   <article className="cert-card">
-                    <div className="cert-card__logo" aria-hidden="true">{cert.icon}</div>
+                    <div className="cert-card__logo" aria-hidden="true"><cert.Icon size={20} strokeWidth={1.5} /></div>
                     <p className="cert-card__name">{cert.name}</p>
                     <p className="cert-card__issuer">{cert.issuer}</p>
                     <a

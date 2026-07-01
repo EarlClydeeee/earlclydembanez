@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import type { LucideIcon } from 'lucide-react'
+import { Factory, Package, House, Cloud, Code2, Layers } from 'lucide-react'
 import DitheredPhoto from './components/DitheredPhoto'
 
 /* ── Data ────────────────────────────────────────────────────────── */
@@ -12,10 +14,19 @@ const EDUCATION = [
   },
 ]
 
-const PROJECTS_PREVIEW = [
+const PROJECTS_PREVIEW: {
+  id: number
+  Icon: LucideIcon
+  title: string
+  desc: string
+  stack: string[]
+  href: string
+  featured: boolean
+  badge: string | null
+}[] = [
   {
     id: 1,
-    icon: '🏭',
+    Icon: Factory,
     title: 'Industrial Monitoring System',
     desc: 'Real-time SCADA-style dashboard for monitoring industrial equipment — built with IoT sensors, a Node.js backend, and a React frontend.',
     stack: ['React', 'Node.js', 'MQTT', 'PostgreSQL'],
@@ -25,7 +36,7 @@ const PROJECTS_PREVIEW = [
   },
   {
     id: 2,
-    icon: '📦',
+    Icon: Package,
     title: 'Inventory Management System',
     desc: 'Full-stack inventory and purchase-order platform for a local SME — Laravel backend, Vue.js frontend, deployed on shared hosting.',
     stack: ['Laravel', 'Vue.js', 'MySQL'],
@@ -35,7 +46,7 @@ const PROJECTS_PREVIEW = [
   },
   {
     id: 3,
-    icon: '🏠',
+    Icon: House,
     title: 'Home Automation Controller',
     desc: 'Raspberry Pi + Arduino system for controlling home appliances via a web dashboard. Voice command integration via the Web Speech API.',
     stack: ['Python', 'Arduino', 'Raspberry Pi', 'WebSockets'],
@@ -60,10 +71,10 @@ const EXPERIENCE_PREVIEW = [
   },
 ]
 
-const CERTS_PREVIEW = [
-  { icon: '☁️', name: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', verify: '#' },
-  { icon: '🟨', name: 'JavaScript Algorithms & Data Structures', issuer: 'freeCodeCamp', verify: '#' },
-  { icon: '⚛️', name: 'React Developer Certification', issuer: 'Meta / Coursera', verify: '#' },
+const CERTS_PREVIEW: { Icon: LucideIcon; name: string; issuer: string; verify: string }[] = [
+  { Icon: Cloud,  name: 'AWS Certified Cloud Practitioner',       issuer: 'Amazon Web Services', verify: '#' },
+  { Icon: Code2,  name: 'JavaScript Algorithms & Data Structures', issuer: 'freeCodeCamp',        verify: '#' },
+  { Icon: Layers, name: 'React Developer Certification',           issuer: 'Meta / Coursera',     verify: '#' },
 ]
 
 const RECS_PREVIEW = [
@@ -102,9 +113,67 @@ const AFFILIATIONS_PREVIEW = [
   },
 ]
 
+type GitHubEvent = {
+  type: string
+  created_at: string
+  repo: { name: string }
+  payload?: {
+    commits?: {
+      sha: string
+      message: string
+      url: string
+    }[]
+  }
+}
+
+type GitHubCommit = {
+  id: string
+  repo: string
+  message: string
+  date: string
+  url: string
+}
+
+async function getGitHubCommits(): Promise<GitHubCommit[]> {
+  try {
+    const res = await fetch('https://api.github.com/users/earlclyde/events/public', {
+      headers: { Accept: 'application/vnd.github+json' },
+      next: { revalidate: 3600 },
+    })
+
+    if (!res.ok) return []
+
+    const events = (await res.json()) as GitHubEvent[]
+
+    return events
+      .filter(event => event.type === 'PushEvent')
+      .flatMap(event =>
+        (event.payload?.commits ?? []).map(commit => ({
+          id: commit.sha,
+          repo: event.repo.name.replace('earlclyde/', ''),
+          message: commit.message.split('\n')[0],
+          date: formatCommitDate(event.created_at),
+          url: commit.url.replace('api.github.com/repos', 'github.com').replace('/commits/', '/commit/'),
+        }))
+      )
+      .slice(0, 6)
+  } catch {
+    return []
+  }
+}
+
+function formatCommitDate(value: string) {
+  return new Intl.DateTimeFormat('en', {
+    month: 'short',
+    year: 'numeric',
+  }).format(new Date(value))
+}
+
 /* ── Page ──────────────────────────────────────────────────────── */
 
-export default function Home() {
+export default async function Home() {
+  const commits = await getGitHubCommits()
+
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────── */}
@@ -114,15 +183,15 @@ export default function Home() {
           <div className="hero__photo-wrap">
             <DitheredPhoto
               src="/Earl.png"
-              width={220}
-              height={270}
-              alt="Earl Clyde Mbanez"
+              width={288}
+              height={320}
+              alt="Earl Clyde Micolob Bañez"
             />
           </div>
 
           {/* Bio */}
           <div className="hero__text">
-            <h1 className="hero__name">Earl Clyde<br />Mbanez</h1>
+            <h1 className="hero__name">E.C. Bañez</h1>
             <p className="hero__bio">
               I&rsquo;m a full-stack engineer and Computer Engineering student at PUP. I build web apps, embedded systems, and industrial automation tools.
             </p>
@@ -225,12 +294,12 @@ export default function Home() {
           <Link href="/projects" className="section-view-all">ALL PROJECTS →</Link>
         </div>
 
-        <ul className="project-list" role="list">
+        <ul className="project-list project-showcase" role="list">
           {PROJECTS_PREVIEW.map(p => (
             <li key={p.id}>
               <div className="project-card">
                 <div className="project-card__icon" aria-hidden="true">
-                  {p.icon}
+                  <p.Icon size={20} strokeWidth={1.5} />
                 </div>
                 <div className="project-card__body">
                   <div className="project-card__badges">
@@ -270,11 +339,11 @@ export default function Home() {
           {EXPERIENCE_PREVIEW.map((item, i) => (
             <li key={i} className="timeline-item">
               <span className="timeline-item__year">{item.year}</span>
-              <div>
+              <div className="timeline-item__body">
                 <div className="timeline-item__role">{item.role}</div>
-                <div className="timeline-item__company">{item.company}</div>
                 {item.desc && <p className="timeline-item__desc">{item.desc}</p>}
               </div>
+              <div className="timeline-item__company">{item.company}</div>
             </li>
           ))}
         </ol>
@@ -295,7 +364,7 @@ export default function Home() {
           {CERTS_PREVIEW.map((cert, i) => (
             <li key={i}>
               <div className="cert-card">
-                <div className="cert-card__logo" aria-hidden="true">{cert.icon}</div>
+                <div className="cert-card__logo" aria-hidden="true"><cert.Icon size={20} strokeWidth={1.5} /></div>
                 <p className="cert-card__name">{cert.name}</p>
                 <p className="cert-card__issuer">{cert.issuer}</p>
                 <a href={cert.verify} className="cert-card__verify">‹ VERIFY ›</a>
@@ -379,12 +448,73 @@ export default function Home() {
         </div>
 
         <div className="github-strip">
-          <div className="github-contrib-placeholder" aria-label="GitHub contributions chart placeholder">
-            GitHub contributions chart — connect your GitHub API to render this
+          <div className="github-contrib-map" aria-label="Recent GitHub activity pattern">
+            {Array.from({ length: 98 }, (_, i) => {
+              const active = commits.length > 0 && commits.some((_, ci) => (i + ci * 9) % 17 === 0)
+
+              return <span key={i} className={active ? 'is-active' : ''} />
+            })}
           </div>
-          <p style={{ fontSize: 'var(--text-sm)', color: 'var(--color-muted)' }}>
-            — contributions in the last year
+
+          <div className="commit-feed" aria-label="Recent GitHub commits">
+            {commits.length > 0 ? (
+              commits.map(commit => (
+                <a
+                  key={commit.id}
+                  href={commit.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="commit-row"
+                >
+                  <span className="commit-row__message">{commit.message}</span>
+                  <span className="commit-row__meta">{commit.repo} · {commit.date}</span>
+                </a>
+              ))
+            ) : (
+              <p className="commit-feed__empty">No public GitHub commits found right now.</p>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Say hello ───────────────────────────────────────── */}
+      <section
+        id="contact"
+        className="landing-section page-container"
+        aria-labelledby="contact-heading"
+      >
+        <div className="section-chrome">
+          <span className="section-label" id="contact-heading">say hello</span>
+        </div>
+
+        <div className="contact-cta">
+          <p className="contact-cta__text">
+            For work, collabs &amp; everything else, reach me at
           </p>
+          <a href="mailto:earlclyde@email.com" className="contact-cta__email">
+            earlclyde@email.com
+          </a>
+          <div className="contact-cta__actions">
+            <a href="mailto:earlclyde@email.com" className="btn-pill">
+              Open mail app
+            </a>
+            <a
+              href="https://linkedin.com/in/earlclyde"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost-pill"
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href="https://github.com/earlclyde"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-ghost-pill"
+            >
+              GitHub ↗
+            </a>
+          </div>
         </div>
       </section>
     </>

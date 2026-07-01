@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, Geist, JetBrains_Mono } from 'next/font/google'
+import { Bricolage_Grotesque, Geist, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import ClientShell from './components/ClientShell'
 
-const spaceGrotesk = Space_Grotesk({
+const bricolage = Bricolage_Grotesque({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
 })
 
 const geist = Geist({
@@ -24,11 +24,11 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Earl Clyde Mbanez — Software Engineer',
+  title: 'Earl Clyde Micolob Bañez — Software Engineer',
   description:
     'Computer Engineering student building systems that solve real problems. Full-stack development, embedded systems, and automation.',
   keywords: [
-    'Earl Clyde Mbanez',
+    'Earl Clyde Micolob Bañez',
     'software engineer',
     'computer engineering',
     'full-stack developer',
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     'portfolio',
     'PUP',
   ],
-  authors: [{ name: 'Earl Clyde Mbanez' }],
+  authors: [{ name: 'Earl Clyde Micolob Bañez' }],
   openGraph: {
-    title: 'Earl Clyde Mbanez — Software Engineer',
+    title: 'Earl Clyde Micolob Bañez — Software Engineer',
     description: 'Building systems that solve real problems.',
     type: 'website',
   },
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       data-theme="light"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${geist.variable} ${jetbrainsMono.variable}`}
+      className={`${bricolage.variable} ${geist.variable} ${jetbrainsMono.variable}`}
     >
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       <head>

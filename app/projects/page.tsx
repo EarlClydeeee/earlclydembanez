@@ -1,15 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import type { LucideIcon } from 'lucide-react'
+import { Factory, Package, House, Globe } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Projects — Earl Clyde Mbanez',
   description: 'Products and platforms I\'ve designed and shipped.',
 }
 
-const PROJECTS = [
+const PROJECTS: {
+  id: number
+  Icon: LucideIcon
+  title: string
+  tagline: string
+  desc: string
+  stack: string[]
+  badges: string[]
+  live: string
+  github: string
+  featured: boolean
+}[] = [
   {
     id: 1,
-    icon: '🏭',
+    Icon: Factory,
     title: 'Industrial Monitoring System',
     tagline: 'Real-time SCADA dashboard for industrial equipment',
     desc: 'A full-stack industrial monitoring platform built as a capstone project. IoT sensors feed live telemetry into a Node.js backend, surfaced through a React dashboard with configurable alert thresholds, historical data charts, and multi-user access control.',
@@ -21,7 +34,7 @@ const PROJECTS = [
   },
   {
     id: 2,
-    icon: '📦',
+    Icon: Package,
     title: 'Inventory Management System',
     tagline: 'Full-stack inventory and PO platform for an SME',
     desc: 'Designed and built for a local small business — tracks stock levels, purchase orders, and supplier contacts. Laravel backend with a Vue.js SPA frontend, deployed on shared PHP hosting. Reduced manual stock-check time by an estimated 60%.',
@@ -33,7 +46,7 @@ const PROJECTS = [
   },
   {
     id: 3,
-    icon: '🏠',
+    Icon: House,
     title: 'Home Automation Controller',
     tagline: 'Raspberry Pi + Arduino web-controlled appliance system',
     desc: 'Controls home appliances (lights, fans, outlets) via a web dashboard and voice commands using the Web Speech API. The Raspberry Pi acts as the hub, communicating to Arduino modules over serial. Includes a mobile-responsive control panel.',
@@ -45,7 +58,7 @@ const PROJECTS = [
   },
   {
     id: 4,
-    icon: '🌐',
+    Icon: Globe,
     title: 'PUP Student Portal Clone',
     tagline: 'A re-engineered version of the PUP enrollment portal',
     desc: 'Rebuilt the PUP enrollment portal UI from scratch with a modern stack — faster load times, accessible markup, and a cleaner scheduling interface. Built as a personal learning exercise and student tool.',
@@ -74,7 +87,7 @@ export default function ProjectsPage() {
             <li key={p.id}>
               <article className="project-card" style={{ flexDirection: 'column', gap: 'var(--space-xl)' }}>
                 <div style={{ display: 'flex', gap: 'var(--space-xl)', alignItems: 'flex-start' }}>
-                  <div className="project-card__icon" aria-hidden="true">{p.icon}</div>
+                  <div className="project-card__icon" aria-hidden="true"><p.Icon size={20} strokeWidth={1.5} /></div>
                   <div className="project-card__body">
                     <div className="project-card__badges">
                       {p.badges.map(b => (
