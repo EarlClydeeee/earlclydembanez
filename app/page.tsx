@@ -1,16 +1,23 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { LucideIcon } from 'lucide-react'
-import { Factory, Package, House, Cloud, Code2, Layers } from 'lucide-react'
+import { BrainCircuit, Building2, Cloud, Code2, Database, GraduationCap, Trophy } from 'lucide-react'
 import DitheredPhoto from './components/DitheredPhoto'
 
 /* ── Data ────────────────────────────────────────────────────────── */
 
 const EDUCATION = [
   {
-    year: '2022–',
+    year: '2023–2027',
     school: 'Polytechnic University of the Philippines',
-    degree: 'BS Computer Engineering',
-    location: 'Manila, Philippines',
+    degree: 'BS Computer Engineering · Specialization in AI & Machine Learning',
+    location: 'Sta. Mesa, Manila',
+  },
+  {
+    year: '2021–2023',
+    school: 'Our Lady of the Holy Rosary School',
+    degree: 'Senior High School · Graduated with High Honors',
+    location: 'Tanza, Cavite',
   },
 ]
 
@@ -20,36 +27,40 @@ const PROJECTS_PREVIEW: {
   title: string
   desc: string
   stack: string[]
+  image: string
   href: string
   featured: boolean
   badge: string | null
 }[] = [
   {
     id: 1,
-    Icon: Factory,
-    title: 'Industrial Monitoring System',
-    desc: 'Real-time SCADA-style dashboard for monitoring industrial equipment — built with IoT sensors, a Node.js backend, and a React frontend.',
-    stack: ['React', 'Node.js', 'MQTT', 'PostgreSQL'],
+    Icon: Trophy,
+    title: 'Drowzi',
+    desc: 'Cursor Manila Hack Sprint champion project. Built the ML media-processing pipeline with Python, OpenCV, and rapid prototyping workflows.',
+    stack: ['Python', 'OpenCV', 'Machine Learning'],
+    image: '/Drowzi.png',
     href: '/projects',
     featured: true,
-    badge: 'Capstone Project',
+    badge: '#1 Hack Sprint',
   },
   {
     id: 2,
-    Icon: Package,
-    title: 'Inventory Management System',
-    desc: 'Full-stack inventory and purchase-order platform for a local SME — Laravel backend, Vue.js frontend, deployed on shared hosting.',
-    stack: ['Laravel', 'Vue.js', 'MySQL'],
+    Icon: Building2,
+    title: 'ACCESS Official Website',
+    desc: 'Organizational directory and asset management portal with Supabase RBAC, borrowing workflows, inventory tracking, and governance data.',
+    stack: ['Next.js', 'Supabase', 'PostgreSQL'],
+    image: '/AccessWeb.png',
     href: '/projects',
     featured: false,
     badge: null,
   },
   {
     id: 3,
-    Icon: House,
-    title: 'Home Automation Controller',
-    desc: 'Raspberry Pi + Arduino system for controlling home appliances via a web dashboard. Voice command integration via the Web Speech API.',
-    stack: ['Python', 'Arduino', 'Raspberry Pi', 'WebSockets'],
+    Icon: Cloud,
+    title: 'AWSCCPUP Website',
+    desc: 'Membership platform for AWS Cloud Club PUP with public pages, member directory, profile management, search, and FastAPI backend.',
+    stack: ['Astro', 'React', 'FastAPI', 'PostgreSQL'],
+    image: '/AWSCCWeb.png',
     href: '/projects',
     featured: false,
     badge: null,
@@ -58,58 +69,70 @@ const PROJECTS_PREVIEW: {
 
 const EXPERIENCE_PREVIEW = [
   {
-    year: '2024–',
-    role: 'Software Developer Intern',
-    company: 'Company Name · Internship',
-    desc: '',
+    year: '2025',
+    role: 'Software Engineering Front-End Lead',
+    company: 'Hayakawa Electronics Philippines Corp.',
+    desc: 'Developed and deployed the Output Monitoring System, tracking 2M+ production cycles and reducing reporting time by 80%.',
   },
   {
-    year: '2023',
-    role: 'Freelance Web Developer',
-    company: 'Independent',
-    desc: 'Built and maintained web applications for small businesses across the Philippines.',
+    year: '2025–',
+    role: 'Software Development Co-Lead',
+    company: 'PUP Microsoft Student Community',
+    desc: 'Mentors developers in modern engineering workflows, frontend-backend integration, and scalable UI architecture.',
+  },
+  {
+    year: '2023–',
+    role: 'Lead Senior Software Developer',
+    company: 'ACCESS – PUP',
+    desc: 'Architected CPE Fair platform modules and leads development of the official ACCESS-PUP website.',
   },
 ]
 
 const CERTS_PREVIEW: { Icon: LucideIcon; name: string; issuer: string; verify: string }[] = [
-  { Icon: Cloud,  name: 'AWS Certified Cloud Practitioner',       issuer: 'Amazon Web Services', verify: '#' },
-  { Icon: Code2,  name: 'JavaScript Algorithms & Data Structures', issuer: 'freeCodeCamp',        verify: '#' },
-  { Icon: Layers, name: 'React Developer Certification',           issuer: 'Meta / Coursera',     verify: '#' },
+  { Icon: BrainCircuit, name: 'AI Engineer for Developers Associate', issuer: 'DataCamp',          verify: 'https://www.datacamp.com/certificate/AIEDA0016819925463' },
+  { Icon: Database,     name: 'Data Analyst Associate',              issuer: 'DataCamp',          verify: 'https://www.datacamp.com/certificate/AIEDA0016819925463' },
+  { Icon: GraduationCap, name: 'Foundations of Project Management',  issuer: 'Google / Coursera', verify: 'https://www.coursera.org/account/accomplishments/verify/MP69EEBGAX4C' },
 ]
 
 const RECS_PREVIEW = [
   {
-    text: 'Earl is one of the most driven students I\'ve taught. His ability to bridge hardware and software sets him apart.',
-    name: 'Prof. Juan Dela Cruz',
-    initials: 'JD',
-    title: 'FACULTY, PUP COED',
+    text: 'CHED Merit Scholar, DTI x Google Scholar, CARD SME Scholar, DataCamp Scholar, and DataCamp ML Team Top 4 Learner.',
+    name: 'Scholarship Record',
+    initials: 'SR',
+    title: 'ACADEMIC RECOGNITION',
   },
   {
-    text: 'Working with Earl on our capstone was exceptional. He delivered production-quality code under real constraints.',
-    name: 'Maria Santos',
-    initials: 'MS',
-    title: 'CLASSMATE, PUP',
+    text: 'Won 1st Place at Cursor Manila Hack Sprint 2026 by contributing the ML media-processing pipeline for Drowzi.',
+    name: 'Cursor Manila',
+    initials: 'CM',
+    title: 'HACK SPRINT CHAMPION',
   },
   {
-    text: 'Earl consistently delivers. His systems-thinking approach makes him valuable on any engineering team.',
-    name: 'Client Name',
-    initials: 'CN',
-    title: 'FREELANCE CLIENT',
+    text: 'Reduced factory reporting time by 80% through OMS, ETL pipeline design, and a hybrid relational + JSON schema.',
+    name: 'Hayakawa Electronics',
+    initials: 'HE',
+    title: 'ENGINEERING IMPACT',
   },
 ]
 
 const AFFILIATIONS_PREVIEW = [
   {
-    abbr: 'CE',
-    name: 'PUP Computer Engineering Society',
-    role: 'MEMBER',
-    desc: 'Active member of the Computer Engineering Society of the Polytechnic University of the Philippines.',
+    abbr: 'ACC',
+    name: 'ACCESS – PUP',
+    role: 'LEAD SENIOR SOFTWARE DEVELOPER',
+    desc: 'Leads web platforms and CPE Fair systems for Computer Engineering students.',
   },
   {
-    abbr: 'PH',
-    name: 'AppBuilders PH',
-    role: 'MEMBER',
-    desc: 'Community of Filipino app builders, indie hackers, and software engineers.',
+    abbr: 'AWS',
+    name: 'AWS Cloud Club – PUP Manila',
+    role: 'DEVELOPMENT TEAM',
+    desc: 'Builds club platforms including LMS, website, and membership systems.',
+  },
+  {
+    abbr: 'MSC',
+    name: 'PUP Microsoft Student Community',
+    role: 'SOFTWARE DEVELOPMENT CO-LEAD',
+    desc: 'Mentors developers and leads project architecture workflows.',
   },
 ]
 
@@ -136,7 +159,7 @@ type GitHubCommit = {
 
 async function getGitHubCommits(): Promise<GitHubCommit[]> {
   try {
-    const res = await fetch('https://api.github.com/users/earlclyde/events/public', {
+    const res = await fetch('https://api.github.com/users/EarlClydeeee/events/public', {
       headers: { Accept: 'application/vnd.github+json' },
       next: { revalidate: 3600 },
     })
@@ -150,7 +173,7 @@ async function getGitHubCommits(): Promise<GitHubCommit[]> {
       .flatMap(event =>
         (event.payload?.commits ?? []).map(commit => ({
           id: commit.sha,
-          repo: event.repo.name.replace('earlclyde/', ''),
+          repo: event.repo.name.replace('EarlClydeeee/', ''),
           message: commit.message.split('\n')[0],
           date: formatCommitDate(event.created_at),
           url: commit.url.replace('api.github.com/repos', 'github.com').replace('/commits/', '/commit/'),
@@ -183,8 +206,8 @@ export default async function Home() {
           <div className="hero__photo-wrap">
             <DitheredPhoto
               src="/Earl.png"
-              width={288}
-              height={320}
+              width={304}
+              height={336}
               alt="Earl Clyde Micolob Bañez"
             />
           </div>
@@ -202,7 +225,7 @@ export default async function Home() {
             <ul className="hero__socials" aria-label="Social links">
               <li>
                 <a
-                  href="https://github.com/earlclyde"
+                  href="https://github.com/EarlClydeeee"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hero__social-link"
@@ -212,7 +235,7 @@ export default async function Home() {
               </li>
               <li>
                 <a
-                  href="https://linkedin.com/in/earlclyde"
+                  href="https://www.linkedin.com/in/earl-clyde-ba%C3%B1ez/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hero__social-link"
@@ -231,7 +254,7 @@ export default async function Home() {
                 </a>
               </li>
               <li>
-                <a href="mailto:earlclyde@email.com" className="hero__social-link">
+                <a href="mailto:earlclyde.mbanez@gmail.com" className="hero__social-link">
                   email
                 </a>
               </li>
@@ -298,6 +321,9 @@ export default async function Home() {
           {PROJECTS_PREVIEW.map(p => (
             <li key={p.id}>
               <div className="project-card">
+                <div className="project-card__media" aria-hidden="true">
+                  <Image src={p.image} alt="" fill sizes="340px" />
+                </div>
                 <div className="project-card__icon" aria-hidden="true">
                   <p.Icon size={20} strokeWidth={1.5} />
                 </div>
@@ -438,12 +464,12 @@ export default async function Home() {
         <div className="section-chrome">
           <span className="section-label" id="github-heading">07 — github</span>
           <a
-            href="https://github.com/earlclyde"
+            href="https://github.com/EarlClydeeee"
             target="_blank"
             rel="noopener noreferrer"
             className="section-view-all"
           >
-            @EARLCLYDE ↗
+            @EARLCLYDEEEE ↗
           </a>
         </div>
 
@@ -491,15 +517,15 @@ export default async function Home() {
           <p className="contact-cta__text">
             For work, collabs &amp; everything else, reach me at
           </p>
-          <a href="mailto:earlclyde@email.com" className="contact-cta__email">
-            earlclyde@email.com
+          <a href="mailto:earlclyde.mbanez@gmail.com" className="contact-cta__email">
+            earlclyde.mbanez@gmail.com
           </a>
           <div className="contact-cta__actions">
-            <a href="mailto:earlclyde@email.com" className="btn-pill">
+            <a href="mailto:earlclyde.mbanez@gmail.com" className="btn-pill">
               Open mail app
             </a>
             <a
-              href="https://linkedin.com/in/earlclyde"
+              href="https://www.linkedin.com/in/earl-clyde-ba%C3%B1ez/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost-pill"
@@ -507,7 +533,7 @@ export default async function Home() {
               LinkedIn ↗
             </a>
             <a
-              href="https://github.com/earlclyde"
+              href="https://github.com/EarlClydeeee"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost-pill"

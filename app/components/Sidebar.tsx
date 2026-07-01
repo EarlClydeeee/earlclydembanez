@@ -4,12 +4,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import {
-  ShoppingBag,
-  BookOpen,
-  Wrench,
-  Archive,
-  Users,
-  Briefcase,
   Moon,
   Sun,
   Menu,
@@ -98,21 +92,7 @@ export default function Sidebar({ onOpenPalette }: SidebarProps) {
 
           {/* Nav */}
           <nav className="sidebar__nav" aria-label="Site navigation">
-            {/* Group 1 — content */}
-            <ul className="sidebar__group">
-              {navLink('/shop',      'Shop',      <ShoppingBag size={14} />)}
-              {navLink('/blog',      'Blog',      <BookOpen    size={14} />)}
-              {navLink('/gear',      'Gear',      <Wrench      size={14} />)}
-              {navLink('/resources', 'Resources', <Archive     size={14} />)}
-            </ul>
-
-            {/* Group 2 — work */}
-            <ul className="sidebar__group">
-              {navLink('/collabs',    'Collabs',    <Users    size={14} />)}
-              {navLink('/consulting', 'Consulting', <Briefcase size={14} />)}
-            </ul>
-
-            {/* Group 3 — portfolio sections */}
+            {/* Portfolio sections */}
             <ul className="sidebar__group">
               <li>
                 <a href="/#education" className="sidebar__link">
@@ -154,25 +134,15 @@ export default function Sidebar({ onOpenPalette }: SidebarProps) {
               }
             </button>
 
-            <div className="sidebar__viewer" aria-label="Live viewer count">
-              <span className="sidebar__viewer-dot" aria-hidden="true" />
-              <span className="sidebar__viewer-count">1</span>
-              &nbsp;person viewing now
-            </div>
-
-            <a href="#" className="sidebar__community">
-              community chat
-            </a>
-
             <p className="sidebar__email-label">
               For work, collabs &amp; everything else, reach me at
             </p>
             <a
-              href="mailto:earlclyde@email.com"
+              href="mailto:earlclyde.mbanez@gmail.com"
               className="sidebar__email"
               aria-label="Email Earl Clyde"
             >
-              earlclyde@email.com
+              earlclyde.mbanez@gmail.com
             </a>
           </div>
         </div>

@@ -2,38 +2,46 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Stack — Earl Clyde Mbanez',
+  title: 'Stack — Earl Clyde Micolob Bañez',
   description: 'Tools, languages, and frameworks I work with.',
 }
 
 const STACK_CATEGORIES = [
   {
     heading: 'Languages',
-    techs: ['JavaScript', 'TypeScript', 'PHP', 'Python', 'C', 'C++', 'HTML', 'CSS'],
+    techs: ['JavaScript', 'TypeScript', 'Python', 'PHP', 'SQL', 'R', 'C++'],
   },
   {
     heading: 'Frontend',
-    techs: ['React', 'Next.js', 'Vue.js', 'Tailwind CSS', 'Bootstrap', 'Vite'],
+    techs: ['React', 'Next.js', 'Astro', 'HTML5', 'CSS3', 'Tailwind CSS'],
   },
   {
-    heading: 'Backend',
-    techs: ['Node.js', 'Express', 'Laravel', 'REST APIs', 'WebSockets', 'MQTT'],
+    heading: 'Backend & APIs',
+    techs: ['Node.js', 'Express.js', 'FastAPI', 'Flask', 'REST API', 'GPT API'],
   },
   {
     heading: 'Databases',
-    techs: ['PostgreSQL', 'MySQL', 'SQLite', 'Redis'],
+    techs: ['PostgreSQL', 'MySQL', 'Supabase', 'Firebase'],
   },
   {
-    heading: 'Embedded & IoT',
-    techs: ['Arduino', 'Raspberry Pi', 'ESP32', 'Microcontrollers', 'Serial Comm', 'Sensors'],
+    heading: 'Cloud & DevOps',
+    techs: ['AWS', 'Vercel', 'Serverless Deployment'],
   },
   {
-    heading: 'DevOps & Tools',
-    techs: ['Git', 'GitHub', 'Docker', 'Linux', 'Nginx', 'VS Code', 'Postman'],
+    heading: 'AI & Machine Learning',
+    techs: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Roboflow', 'OpenCV'],
   },
   {
-    heading: 'Learning Now',
-    techs: ['AWS', 'Kubernetes', 'React Native', 'GraphQL'],
+    heading: 'Data Science & Analysis',
+    techs: ['Kaggle', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn'],
+  },
+  {
+    heading: 'Model Deployment',
+    techs: ['Flask', 'Streamlit', 'Gradio'],
+  },
+  {
+    heading: 'Tools',
+    techs: ['Git', 'GitHub', 'Figma', 'Conventional Commits'],
   },
 ]
 
@@ -44,7 +52,7 @@ export default function StackPage() {
         <p className="page-hero__eyebrow">Technologies</p>
         <h1 className="page-hero__title">stack</h1>
         <p className="page-hero__desc">
-          Tools and technologies I reach for across full-stack web, embedded systems, and automation projects.
+          Tools and technologies I reach for across full-stack web, AI/ML, data analysis, cloud deployment, and production-facing student platforms.
         </p>
       </div>
 

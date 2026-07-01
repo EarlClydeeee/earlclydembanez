@@ -36,9 +36,9 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
     { id: 'nav-recs',     group: 'Navigate', label: 'Recommendations', hint: '/recommendations',  action: () => go('/recommendations') },
     { id: 'nav-affil',    group: 'Navigate', label: 'Affiliations',    hint: '/affiliations',     action: () => go('/affiliations') },
     /* Links */
-    { id: 'link-github',  group: 'Links', label: 'GitHub ↗',   hint: 'github.com/earlclyde',         action: () => { window.open('https://github.com/earlclyde', '_blank'); onClose() } },
-    { id: 'link-li',      group: 'Links', label: 'LinkedIn ↗', hint: 'linkedin.com/in/earlclyde',    action: () => { window.open('https://linkedin.com/in/earlclyde', '_blank'); onClose() } },
-    { id: 'link-email',   group: 'Links', label: 'Send email', hint: 'earlclyde@email.com',          action: () => { window.location.href = 'mailto:earlclyde@email.com'; onClose() } },
+    { id: 'link-github',  group: 'Links', label: 'GitHub ↗',   hint: 'github.com/EarlClydeeee',      action: () => { window.open('https://github.com/EarlClydeeee', '_blank'); onClose() } },
+    { id: 'link-li',      group: 'Links', label: 'LinkedIn ↗', hint: 'linkedin.com/in/earl-clyde-bañez', action: () => { window.open('https://www.linkedin.com/in/earl-clyde-ba%C3%B1ez/', '_blank'); onClose() } },
+    { id: 'link-email',   group: 'Links', label: 'Send email', hint: 'earlclyde.mbanez@gmail.com',   action: () => { window.location.href = 'mailto:earlclyde.mbanez@gmail.com'; onClose() } },
   ]
 
   const q        = query.trim().toLowerCase()

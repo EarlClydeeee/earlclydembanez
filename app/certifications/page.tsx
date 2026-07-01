@@ -1,34 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import type { LucideIcon } from 'lucide-react'
-import { Cloud, Code2, Layers, Server, Cpu, Terminal } from 'lucide-react'
+import { BrainCircuit, BriefcaseBusiness, Cloud, Database, GraduationCap, Server } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Certifications — Earl Clyde Mbanez',
+  title: 'Certifications — Earl Clyde Micolob Bañez',
   description: 'Credentials and certifications, each verifiable at its source.',
 }
 
 const CERT_GROUPS: { heading: string; certs: { Icon: LucideIcon; name: string; issuer: string; verify: string }[] }[] = [
   {
-    heading: 'Cloud & Infrastructure',
+    heading: 'DataCamp',
     certs: [
-      { Icon: Cloud,    name: 'AWS Certified Cloud Practitioner',       issuer: 'Amazon Web Services',              verify: '#' },
-      { Icon: Server,   name: 'Azure Fundamentals (AZ-900)',             issuer: 'Microsoft',                        verify: '#' },
+      { Icon: BrainCircuit, name: 'AI Engineer for Developers Associate', issuer: 'DataCamp', verify: 'https://www.datacamp.com/certificate/AIEDA0016819925463' },
+      { Icon: Database,     name: 'Data Analyst Associate',               issuer: 'DataCamp', verify: 'https://www.datacamp.com/certificate/AIEDA0016819925463' },
+      { Icon: Server,       name: 'Data Engineer',                        issuer: 'DataCamp', verify: 'https://www.datacamp.com/certificate/AIEDA0016819925463' },
+      { Icon: Cloud,        name: 'AWS Cloud Practitioner',               issuer: 'DataCamp', verify: 'https://www.datacamp.com/certificate/AIEDA0016819925463' },
+      { Icon: Cloud,        name: 'Google Cloud Certifications',          issuer: 'DataCamp', verify: 'https://www.datacamp.com/certificate/AIEDA0016819925463' },
     ],
   },
   {
-    heading: 'Web Development',
+    heading: 'Project Management',
     certs: [
-      { Icon: Code2,    name: 'JavaScript Algorithms & Data Structures', issuer: 'freeCodeCamp',                     verify: '#' },
-      { Icon: Layers,   name: 'React Developer Certification',           issuer: 'Meta / Coursera',                  verify: '#' },
-      { Icon: Terminal, name: 'PHP & Laravel Developer',                 issuer: 'Udemy',                            verify: '#' },
-    ],
-  },
-  {
-    heading: 'Engineering',
-    certs: [
-      { Icon: Cpu,      name: 'Introduction to Embedded Systems',        issuer: 'Coursera / University of Colorado', verify: '#' },
-      { Icon: Code2,    name: 'Python for Everybody',                    issuer: 'University of Michigan / Coursera', verify: '#' },
+      { Icon: BriefcaseBusiness, name: 'Foundations of Project Management', issuer: 'Google / Coursera', verify: 'https://www.coursera.org/account/accomplishments/verify/MP69EEBGAX4C' },
     ],
   },
 ]

@@ -378,29 +378,27 @@ code, pre, .mono {
 }
 
 .hero {
-  max-width: 680px;
-  padding-block: var(--space-xl) var(--space-2xl);
+  max-width: 720px;
+  padding-block: clamp(4rem, 10vh, 7rem) var(--space-2xl);
 }
 
 .hero__split {
   display: grid;
-  grid-template-columns: 288px minmax(0, 1fr);
-  gap: 2.5rem;
+  grid-template-columns: 304px minmax(0, 1fr);
+  gap: 3rem;
   align-items: center;
 }
 
 .hero__photo-wrap {
   flex-shrink: 0;
+  width: fit-content;
+  background: oklch(98% 0.008 60);
   animation: slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
 }
 
 .dithered-canvas {
   display: block;
   max-width: 100%;
-}
-
-[data-theme="dark"] .dithered-canvas {
-  filter: invert(1);
 }
 
 .hero__text {
@@ -411,9 +409,9 @@ code, pre, .mono {
 
 .hero__name {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: clamp(1.75rem, 2.2vw + 0.35rem, 2.35rem);
-  font-weight: 600;
-  letter-spacing: -0.045em;
+  font-size: clamp(1.95rem, 2.45vw + 0.35rem, 2.7rem);
+  font-weight: 700;
+  letter-spacing: -0.055em;
   line-height: 1;
   color: var(--color-ink);
   animation: slide-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
@@ -658,6 +656,10 @@ code, pre, .mono {
   height: 40px;
 }
 
+.project-showcase .project-card__media {
+  aspect-ratio: 16 / 9;
+}
+
 .project-showcase .project-card__title {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-size: var(--text-base);
@@ -692,6 +694,24 @@ code, pre, .mono {
   color: var(--color-neutral);
   flex-shrink: 0;
   overflow: hidden;
+}
+
+.project-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-md);
+  background: var(--color-paper-2);
+}
+
+.project-card__media img {
+  object-fit: cover;
+}
+
+.project-card__media--wide {
+  aspect-ratio: 16 / 8.5;
 }
 
 .project-card__body {
@@ -1411,15 +1431,50 @@ code, pre, .mono {
 /* ═══════════════════════════════════════════════════════════════════
    Experience sub-page — company card style
 ═══════════════════════════════════════════════════════════════════ */
+.experience-timeline {
+  position: relative;
+}
+
 .exp-company-block {
+  position: relative;
   margin-bottom: var(--space-3xl);
+  padding-left: 0;
+}
+
+.exp-company-block::before {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 52px;
+  bottom: calc(-1 * var(--space-3xl));
+  width: 1px;
+  background: var(--color-rule);
+  transition:
+    background var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out);
+}
+
+.exp-company-block:last-child::before {
+  bottom: 0;
+}
+
+.exp-company-block.is-active::before {
+  background: linear-gradient(
+    180deg,
+    var(--color-accent),
+    var(--color-accent-rule) 42%,
+    var(--color-rule)
+  );
+  box-shadow: 0 0 18px var(--color-accent-ghost);
 }
 
 .exp-company-header {
+  position: relative;
   display: flex;
   align-items: flex-start;
   gap: var(--space-lg);
   margin-bottom: var(--space-xl);
+  z-index: 1;
 }
 
 .exp-company-logo {
@@ -1435,6 +1490,18 @@ code, pre, .mono {
   font-weight: 700;
   color: var(--color-muted);
   flex-shrink: 0;
+  transition:
+    border-color var(--dur-mid) var(--ease-out),
+    color        var(--dur-mid) var(--ease-out),
+    box-shadow   var(--dur-mid) var(--ease-out),
+    background   var(--dur-mid) var(--ease-out);
+}
+
+.exp-company-block.is-active .exp-company-logo {
+  color: var(--color-accent);
+  border-color: var(--color-accent-rule);
+  background: var(--color-accent-faint);
+  box-shadow: 0 0 0 4px var(--color-accent-faint);
 }
 
 .exp-company-info {
@@ -1458,7 +1525,7 @@ code, pre, .mono {
 .exp-role-list {
   display: flex;
   flex-direction: column;
-  border-left: 2px solid var(--color-rule);
+  border-left: 0;
   margin-left: calc(24px + var(--space-lg));
   padding-left: var(--space-xl);
   gap: var(--space-xl);
@@ -1466,18 +1533,41 @@ code, pre, .mono {
 
 .exp-role-item {
   position: relative;
+  opacity: 0.62;
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out);
 }
 
 .exp-role-item::before {
   content: '';
   position: absolute;
-  left: calc(-1 * var(--space-xl) - 1px);
+  left: calc(-1 * var(--space-xl) - var(--space-lg) - 1px);
   top: 6px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: var(--color-paper);
-  border: 2px solid var(--color-muted);
+  border: 1px solid var(--color-muted);
+  transition:
+    background var(--dur-mid) var(--ease-out),
+    border-color var(--dur-mid) var(--ease-out),
+    box-shadow var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out);
+}
+
+.exp-role-item.is-active {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.exp-role-item.is-active::before {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: scale(1.25);
+  box-shadow:
+    0 0 0 5px var(--color-accent-faint),
+    0 0 18px var(--color-accent-ghost);
 }
 
 .exp-role-title {
@@ -1485,6 +1575,11 @@ code, pre, .mono {
   font-weight: 600;
   font-size: var(--text-base);
   color: var(--color-ink);
+  transition: color var(--dur-mid) var(--ease-out);
+}
+
+.exp-role-item.is-active .exp-role-title {
+  color: var(--color-accent);
 }
 
 .exp-role-period {
