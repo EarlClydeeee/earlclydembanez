@@ -1,60 +1,72 @@
-import type { Metadata } from "next";
-import { Archivo, Space_Grotesk } from "next/font/google";
-import "./globals.css";
-
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "900"],
-});
+import type { Metadata } from 'next'
+import { Space_Grotesk, Geist, JetBrains_Mono } from 'next/font/google'
+import './globals.css'
+import ClientShell from './components/ClientShell'
 
 const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-});
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+})
+
+const geist = Geist({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+  weight: ['400', '500'],
+})
 
 export const metadata: Metadata = {
-  title: "Earl Clyde — Software Engineer",
+  title: 'Earl Clyde Mbanez — Software Engineer',
   description:
-    "Computer Engineering student building systems that solve real problems. Full-stack development, embedded systems, industrial monitoring, and automation. Available for work — 2026.",
+    'Computer Engineering student building systems that solve real problems. Full-stack development, embedded systems, and automation.',
   keywords: [
-    "Earl Clyde",
-    "software engineer",
-    "computer engineering",
-    "full-stack developer",
-    "embedded systems",
-    "PHP",
-    "JavaScript",
-    "portfolio",
-    "PUP",
+    'Earl Clyde Mbanez',
+    'software engineer',
+    'computer engineering',
+    'full-stack developer',
+    'embedded systems',
+    'PHP',
+    'JavaScript',
+    'portfolio',
+    'PUP',
   ],
-  authors: [{ name: "Earl Clyde" }],
+  authors: [{ name: 'Earl Clyde Mbanez' }],
   openGraph: {
-    title: "Earl Clyde — Software Engineer",
-    description:
-      "Building systems that solve real problems. Full-stack, embedded, and industrial software engineering.",
-    type: "website",
+    title: 'Earl Clyde Mbanez — Software Engineer',
+    description: 'Building systems that solve real problems.',
+    type: 'website',
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Earl Clyde — Software Engineer",
-    description:
-      "Building systems that solve real problems. Full-stack, embedded, and industrial software engineering.",
-  },
-};
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+/* Inline script: reads localStorage and sets data-theme before first paint,
+   preventing flash of unstyled content on theme switch. */
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body
-        className={`${archivo.variable} ${spaceGrotesk.variable} antialiased`}
-      >
-        {children}
+    <html
+      lang="en"
+      data-theme="light"
+      suppressHydrationWarning
+      className={`${spaceGrotesk.variable} ${geist.variable} ${jetbrainsMono.variable}`}
+    >
+      {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>
+        <ClientShell>
+          {children}
+        </ClientShell>
       </body>
     </html>
-  );
+  )
 }
